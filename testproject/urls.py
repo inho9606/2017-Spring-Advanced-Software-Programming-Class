@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^bookmark/(?P<pk>\d+)/$', BookmarkDV.as_view(), name='detail'),
     url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^polls/', include('polls.urls')),
+    url(r'^ipsi/', include('ipsi.urls')),
 ]

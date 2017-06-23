@@ -8,7 +8,7 @@ class Post(models.Model):
 	description = models.CharField('DESCRIPTION', max_length=100, blank=True, help_text='simple description text.')
 	content=models.TextField('CONTENT')
 	create_date=models.DateTimeField('Create Date', auto_now_add=True)
-	modify_date=models.DateTimeField('Modify Date', auto_now=True)
+	modify_date = models.DateTimeField('Modify Date', auto_now=True)
 	class Meta:
 		verbose_name = 'post'
 		verbose_name_plural = 'posts'
