@@ -6,8 +6,8 @@ def index(request):
 	datas = Apply.objects.order_by('-pk')
 	return render(request, 'ipsi/index.html', {'datas': datas})
 
-def detail(request, id):
-	data = get_object_or_404(Apply, pk=id)
+def ipsi_detail(request, pk):
+	data = get_object_or_404(Apply, pk=pk)
 	return render(request, 'ipsi/detail.html', {'data': data})
 
 def get_data(**user):

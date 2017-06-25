@@ -4,7 +4,7 @@
 <h1>Stored Datas list</h1>
 {% for data in datas %}
 <div>
-<li><a href="{% url 'detail' pk=data.pk">{{ data.apply_univ }}</a></li>
+<li><a href="{% url 'ipsi:ipsi_detail' pk=data.pk">{{ data.apply_univ }}</a></li>
 <p>{{ data.sat_year }} {{ data.apply_faculty }} {{ data.apply_way|linebreaksbr }}</p>
 </div>
 {% endfor %}
