@@ -1,0 +1,8 @@
+<h1>{{ data.apply_univ }}</h1>
+{% if data.jungsi_set.count %}
+{% inform = data.jungsi_set.first %}
+<ul>
+<p>{{ inform.sat_kor }} {{ inform.sat_math }} {{ inform.sat_gpa_eng|linebreaksbr }}</p>
+<p>{{ inform.sat_gpa_history }} {{ inform.sat_choice1 }} {{ inform.sat_choice2 }} {{ inform.sat_language|linebreaksbr }}</p>
+</ul>
+{% endif %}

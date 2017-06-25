@@ -1,8 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 # Create your views here.
 from ipsi.models import *
+
 def index(request):
-	return render(request, 'ipsi/index.html', {})
+	datas = Apply.objects.order_by('-pk')
+	return render(request, 'ipsi/index.html', {'datas': datas})
+
+def detail(request, id):
+	data = get_object_or_404(Apply, pk=id)
+	return render(request, 'ipsi/detail.html', {'data': data})
 
 def get_data(**user):
 	new = Apply(sat_year = user[sat_year], apply_univ = user[apply_univ], apply_faculty = user[apply_faculty], apply_way = user[apply_way], origin_school = user[origin_school])

@@ -1,9 +1,10 @@
-<html>
 <head>
-<title>입시결과 예측</title>
+<title>ipsi data</title>
 </head>
-<body>
-<p>안녕하세요!</p>
-</body>
-</html>
-
+<h1>Stored Datas list</h1>
+{% for data in datas %}
+<div>
+<li><a href="{% url 'detail' pk=data.pk">{{ data.apply_univ }}</a></li>
+<p>{{ data.sat_year }} {{ data.apply_faculty }} {{ data.apply_way|linebreaksbr }}</p>
+</div>
+{% endfor %}
