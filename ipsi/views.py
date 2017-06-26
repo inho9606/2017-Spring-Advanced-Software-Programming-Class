@@ -10,6 +10,18 @@ def ipsi_detail(request, pk):
 	data = get_object_or_404(Apply, pk=pk)
 	return render(request, 'ipsi/detail.html', {'data': data})
 
+def search_rank(my_data):
+	data_list = Apply.objects.filter(sat_year= my_data.sat_year).filter(apply_univ = my_data.apply_univ).filter(apply_faculty = my_data.apply_faculty).filter(apply_way = my_data.apply_way)
+	rank = 1
+	temp = my_data.jungsi_set.first()
+	my_sum = temp.sat_kor + temp.sat_math + temp.sat_choice1 + temp.sat_choice2
+	for data in data_list:
+		if data.pk == my_data.pk: continue
+		temp = data.jungsi_set.first()
+		temp_sum = temp.sat_kor + temp.sat_math + temp.sat_choice1 + temp.sat_choice2
+		if temp_sum > my_sum: rank += 1
+	return rank
+
 def get_data(**user):
 	new = Apply.objects.create(sat_year = user['sat_year'], apply_univ = user['apply_univ'], apply_faculty = user['apply_faculty'], apply_way = user['apply_way'], origin_school = user['origin_school'])
 	if user['jungsi'] == 1:
@@ -26,3 +38,7 @@ def input_data(request):
 	else:
 		data = PostForm()
 		return render(request, 'ipsi/ipsi_add.html', {'data': data})
+
+def output_data(request, my_data):
+	my_rank = search_rank(my_data)
+	return render(request, 'ipsi/ipsi_result.html', {'rank': my_rank, 'data': my_data})
