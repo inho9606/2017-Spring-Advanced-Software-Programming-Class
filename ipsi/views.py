@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 # Create your views here.
 from ipsi.models import *
 
@@ -18,3 +18,13 @@ def get_data(**user):
 	else:
 		n = new.susi_set.create(gpa = user[gpa], non_subject = user[non_subject], subject = user[subject], interview = user[interview])
 	n.save()
+
+def input_data(request):
+	if request.method == "POST":
+		form = PostForm(request.POST)
+		if form.is_valid():
+			data = form.save()
+			return redirect('ipsi_detail', pk=data.pk)
+	else:
+		data = PostForm()
+		return render(request, 'ipsi/ipsi_add.html', {'data': data})
