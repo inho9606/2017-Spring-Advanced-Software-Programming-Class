@@ -1,8 +1,18 @@
-<h1>{{ data.apply_univ }}</h1>
-{% if data.jungsi_set.count %}
-{% inform = data.jungsi_set.first %}
+﻿<!doctype html>
+<head>
+<meta charset="utf-8"/>
+</head>
+<body>
+<h1>{{ data.apply_univ }} 기본 정보</h1>
 <ul>
-<p>{{ inform.sat_kor }} {{ inform.sat_math }} {{ inform.sat_gpa_eng|linebreaksbr }}</p>
-<p>{{ inform.sat_gpa_history }} {{ inform.sat_choice1 }} {{ inform.sat_choice2 }} {{ inform.sat_language|linebreaksbr }}</p>
+<p>지원 대학: {{ data.apply_univ }} 지원 년도: {{ data.sat_year }} 지원 학과: {{ data.apply_faculty }} 지원 전형: {{ data.apply_way|linebreaksbr }}</p>
+</ul>
+{% if data.jungsi_set.count %}
+<h2>상세 정보</h2>
+<ul>
+<p>지원 시기: 정시</p>
+<p>국어 표준점수: {{ data.jungsi_set.first.sat_kor }} 수학 표준점수: {{ data.jungsi_set.first.sat_math }} 영어 등급: {{ data.jungsi_set.first.sat_gpa_eng|linebreaksbr }}</p>
+<p>한국사 등급: {{ data.jungsi_set.first.sat_gpa_history }} 탐구1 표준점수: {{ data.jungsi_set.first.sat_choice1 }} 탐구2 표준점수: {{ data.jungsi_set.first.sat_choice2 }} 제2외국어: {{ data.jungsi_set.first.sat_language|linebreaksbr }}</p>
 </ul>
 {% endif %}
+</body>

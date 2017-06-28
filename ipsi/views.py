@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
 # Create your views here.
 from ipsi.models import *
+from ipsi.forms import ApplyForm, JungsiForm
 
 def index(request):
 	datas = Apply.objects.order_by('-pk')
@@ -31,12 +32,12 @@ def get_data(**user):
 
 def input_data(request):
 	if request.method == "POST":
-		form = PostForm(request.POST)
+		form = ApplyForm(request.POST)
 		if form.is_valid():
 			data = form.save()
 			return redirect('ipsi_detail', pk=data.pk)
 	else:
-		data = PostForm()
+		data = ApplyForm()
 		return render(request, 'ipsi/ipsi_add.html', {'data': data})
 
 def output_data(request, my_data):

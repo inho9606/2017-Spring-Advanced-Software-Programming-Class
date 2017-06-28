@@ -1,10 +1,14 @@
+<!doctype html>
 <head>
 <title>ipsi data</title>
 </head>
+<body>
 <h1>Stored Datas list</h1>
 {% for data in datas %}
 <div>
-<li><a href="{% url 'ipsi:ipsi_detail' pk=data.pk">{{ data.apply_univ }}</a></li>
-<p>{{ data.sat_year }} {{ data.apply_faculty }} {{ data.apply_way|linebreaksbr }}</p>
+<li><a href="{% url 'ipsi:ipsi_detail' pk=data.pk %}">{{ data.apply_univ }}</a></li>
+<p>{{ data.sat_year }} / {{ data.apply_faculty }} / {{ data.apply_way|linebreaksbr }}</p>
 </div>
 {% endfor %}
+<a href="{% url 'ipsi:input_data' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Input Data</a>
+</body>
