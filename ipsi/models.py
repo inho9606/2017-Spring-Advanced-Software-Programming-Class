@@ -3,7 +3,7 @@
 # Create your models here.
 
 class Apply(models.Model):
-	sat_year = models.IntegerField(max_length=200)
+	sat_year = models.IntegerField()
 	apply_univ = models.CharField(max_length=20)
 	apply_faculty = models.CharField(max_length=20)
 	apply_way = models.CharField(max_length=20)
