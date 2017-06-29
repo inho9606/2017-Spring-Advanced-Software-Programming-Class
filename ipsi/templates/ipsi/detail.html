@@ -7,12 +7,29 @@
 <ul>
 <p>지원 대학: {{ data.apply_univ }} 지원 년도: {{ data.sat_year }} 지원 학과: {{ data.apply_faculty }} 지원 전형: {{ data.apply_way|linebreaksbr }}</p>
 </ul>
-{% if data.jungsi_set.count %}
 <h2>상세 정보</h2>
+{% if data.options == 'j' %}
 <ul>
 <p>지원 시기: 정시</p>
 <p>국어 표준점수: {{ data.jungsi_set.first.sat_kor }} 수학 표준점수: {{ data.jungsi_set.first.sat_math }} 영어 등급: {{ data.jungsi_set.first.sat_gpa_eng|linebreaksbr }}</p>
 <p>한국사 등급: {{ data.jungsi_set.first.sat_gpa_history }} 탐구1 표준점수: {{ data.jungsi_set.first.sat_choice1 }} 탐구2 표준점수: {{ data.jungsi_set.first.sat_choice2 }} 제2외국어: {{ data.jungsi_set.first.sat_language|linebreaksbr }}</p>
+</ul>
+{% else %}
+<ul>
+<p>지원 시기: 수시</p>
+<p>전형 결과: {{ data.susi_set.result }}</p>
+<h3>교과 내용</h3>
+<ul>
+<p>{{ data.susi_set.first.subject }}</p>
+</ul>
+<h4>비교과 내용</h4>
+<ul>
+<p>{{ data.susi_set.first.non_subject }}</p>
+</ul>
+<h5>면접 내용</h5>
+<ul>
+<p>{{ data.susi_set.first.interview }}</p>
+</ul>
 </ul>
 {% endif %}
 </body>

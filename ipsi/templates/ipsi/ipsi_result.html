@@ -1,0 +1,13 @@
+﻿<!doctype html>
+<head>
+<meta charset="utf-8"/>
+<title>Result for your data</title>
+</head>
+<h1>결과</h1>
+<ul>
+<p>{{ data.sat_year }}년 {{ data.apply_univ }} {{ data.options }} {{ data.apply_faculty }} {{ data.apply_way }}</p>
+<p>총 지원자 수 : {{ total }}</p>
+<p>내 순위 : {{ rank }}</p>
+</ul>
+<li><a href="{% url 'ipsi:index' %}">Go to the index page</a></li>
+</body>

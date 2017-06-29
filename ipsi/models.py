@@ -1,19 +1,21 @@
-from django.db import models
+﻿from django.db import models
 
 # Create your models here.
 
 class Apply(models.Model):
-	sat_year = models.CharField(max_length=200)
+	sat_year = models.IntegerField(max_length=200)
 	apply_univ = models.CharField(max_length=20)
 	apply_faculty = models.CharField(max_length=20)
 	apply_way = models.CharField(max_length=20)
 	origin_school = models.CharField(max_length=30)
+	period = (('s', '수시'), ('j', '정시'),)
+	options = models.CharField(max_length=1, choices=period, default='정시')
 	def __str__(self): # __unicode__ on Python 2
 		return self.sat_year
 
 class Susi(models.Model):
 	apply = models.ForeignKey(Apply, on_delete=models.CASCADE) 
-	gpa = models.IntegerField()
+	gpa = models.FloatField()
 	non_subject = models.TextField()
 	subject = models.TextField()
 	interview = models.TextField()
