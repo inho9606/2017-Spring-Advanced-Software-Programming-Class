@@ -3,6 +3,7 @@
 <title>ipsi data</title>
 </head>
 <body>
+<li><a href="{% url 'home' %}">Home</a></li>
 <h1>Stored Datas list</h1>
 {% for data in datas %}
 <div>
@@ -10,5 +11,10 @@
 <p>{{ data.sat_year }} / {{ data.apply_faculty }} / {{ data.options }} / {{ data.apply_way|linebreaksbr }}</p>
 </div>
 {% endfor %}
+{% if user.is_active %}
 <a href="{% url 'ipsi:input_data' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Input Data</a>
+{% else %}
+<p>Please input your datas after logging in</p>
+<a href="{% url 'login' %}">Go to the login page</a> /
+{% endif %}
 </body>

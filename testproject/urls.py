@@ -21,6 +21,11 @@ from django.contrib import admin
 
 from bookmark.views import BookmarkLV, BookmarkDV
 
+from django.conf.urls.static import static
+from django.conf import settings
+from testproject.views import HomeView
+from testproject.views import UserCreateView, UserCreateDoneTV
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^bookmark/$', BookmarkLV.as_view(), name='index'),
@@ -28,4 +33,8 @@ urlpatterns = [
     url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^polls/', include('polls.urls', namespace='polls')),
     url(r'^ipsi/', include('ipsi.urls', namespace='ipsi')),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^accounts/register/$', UserCreateView.as_view( ), name='register'),
+    url(r'^accounts/register/done/$', UserCreateDoneTV.as_view( ), name='register_done'),
+    url(r'^$', HomeView.as_view( ), name='home'),
 ]
